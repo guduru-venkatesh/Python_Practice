@@ -42,3 +42,36 @@ N is an integer within the range [1..100,000];
 each element of array A is an integer within the range [1..100,000,000].
 """
 
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    maxpoint1=0
+    minpoint=0
+    maxpoint2=0
+    depth=0
+    depth_list=[]
+    starting_pont_index=0
+    A.append(0)
+    if len(A)<=3:
+        return depth;
+    for i in range(len(A)-1):
+        if A[i]>A[i+1]:
+            starting_pont_index=i
+            maxpoint1=A[i]
+            minpoint=A[i+1]
+            maxpoint2=A[i+1]
+            break;
+    for index,i in  enumerate(range(starting_pont_index+2,len(A)-1)):
+        if A[i] >min(maxpoint1,maxpoint2) and A[i]>A[i+1]:
+            depth = min(maxpoint1,A[i]) - minpoint
+            depth_list.append(depth)
+            starting_pont_index=i
+            maxpoint1= A[i]
+            minpoint=A[i+1]
+            maxpoint2=A[i+1]
+        if A[i]<maxpoint1 and A[i]<=minpoint:
+            minpoint=min(minpoint,A[i])
+        if A[i]>minpoint and A[i]>maxpoint2 and starting_pont_index!=i:
+            maxpoint2=A[i]
+    return 0 if not depth else max(depth_list)
