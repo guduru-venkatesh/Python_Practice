@@ -75,3 +75,30 @@ def solution(A):
         if A[i]>minpoint and A[i]>maxpoint2 and starting_pont_index!=i:
             maxpoint2=A[i]
     return 0 if not depth else max(depth_list)
+
+
+
+"""
+Approach 2:
+
+def solution(A):
+    # Implement your solution here
+    maxpoint1=0
+    minpoint=0
+    maxpoint2=0
+    depth=0
+    depth_list=[]
+    starting_pont_index=0
+    
+    if len(A)<=3:
+        return depth;
+
+    for i in range(1,len(A)-1):
+        maxpoint1 = max(A[:i])
+        maxpoint2 = max(A[i+1:])
+        if min(maxpoint1,maxpoint2)>A[i]:
+            depth=max(depth,min(maxpoint1,maxpoint2)-A[i])
+            print(depth)
+    return depth
+
+"""
